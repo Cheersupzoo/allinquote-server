@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon ./src/index.ts",
     "build": "npx tsc",
-    "start": "node ./out/index.js"
+    "postinstall": "tsc",
+    "start": "node out/index.js"
   },
   "keywords": [],
   "author": "",
