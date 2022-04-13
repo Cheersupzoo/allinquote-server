@@ -2,8 +2,13 @@ import { Quote } from "@prisma/client";
 import Fastify, { FastifyInstance, RouteShorthandOptions } from "fastify";
 import { Server, IncomingMessage, ServerResponse } from "http";
 import { QuoteRepository } from "./repo/quote";
+import CORS from "fastify-cors";
 
 const server: FastifyInstance = Fastify({});
+
+server.register(CORS, { 
+  // put your options here
+})
 
 const quoteRepo = new QuoteRepository();
 
@@ -120,7 +125,7 @@ server.delete("/quote/:id", async (request, reply) => {
 
 const start = async () => {
   try {
-    await server.listen(process.env.PORT || 3000, "0.0.0.0");
+    await server.listen(process.env.PORT || 3001, "0.0.0.0");
 
     const address = server.server.address();
     const port = typeof address === "string" ? address : address?.port;
